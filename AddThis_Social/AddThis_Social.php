@@ -49,6 +49,9 @@ function AddThis_add_button( $content ) {
 
     return $content;
 }
+	//Recieved Help From Chris Allen
+
+	
 
 add_filter( 'the_content', 'AddThis_add_button', 20 );
 
@@ -100,6 +103,12 @@ function AddThis_add_disable_button_settings() {
 		'absint'					//This is a sanitation function
 	);
 
+	register_setting(
+		'AddThis_NumberPreferred'
+		'AddThis_NumberPreferred'
+		'absint'
+	);
+
 	add_settings_section(
 		'AddThis_main_settings',
 		__( 'AddThis Controls' ),
@@ -113,6 +122,16 @@ function AddThis_add_disable_button_settings() {
 		'AddThis_render_disable_button_input',
 		'AddThis_options_page',
 		'AddThis_main_settings'
+	);
+
+	add_settings_field(
+		'NumberPreferred_field',
+    	__('How many Share buttons?'),
+	    'render_Number_Preferred_input',
+	    'AddThis_options_page',
+	    'AddThis_main_settings'
+
+
 	);
 }
 
