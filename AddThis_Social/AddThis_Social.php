@@ -125,8 +125,17 @@ function AddThis_add_disable_button_settings() {
 	    'AddThis_options_page',
 	    'AddThis_main_settings'
 
-
 	);
+
+
+	add_settings_field(
+		'Position_field',
+		__('Choose a position'),
+		'AddThis_render_Position_input',
+		'AddThis_options_page',
+		'AddThis_main_settings'
+	);
+
 }
 
 add_action ('admin_init', 'AddThis_add_disable_button_settings');
@@ -166,4 +175,9 @@ echo '<label><input type="radio" name="Number_Preferred_field" value="1"'.
 
 
 
+function AddThis_render_Position_input(){
+	$current = get_option('Position_field', left);
 
+
+
+}
