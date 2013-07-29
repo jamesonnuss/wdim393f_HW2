@@ -61,3 +61,32 @@ function AddThis_add_options_page() {
 		'AddThis_render_options_page'
 	);
 }
+
+
+add_action('admin_menu', 'AddThis_add_options_page');
+
+
+//Adding in the options page
+
+function AddThis_render_options_page() {
+ ?>
+    <div class="wrap">
+        <?php screen_icon(); ?>
+
+        <h2><?php _e( 'The AddThis Options' ); ?></h2>
+        <form action="options.php" method="post">
+
+
+            <?php settings_fields( 'AddThis_disable_button' ); ?>
+            <?php do_settings_sections( 'AddThis_options_page' ); ?>
+            
+
+            <p class="submit">
+                <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( 'Save Changes' ); ?>">
+            </p>
+
+
+        </form>
+    </div>
+<?php
+}
