@@ -90,3 +90,28 @@ function AddThis_render_options_page() {
     </div>
 <?php
 }
+
+//Adding a disable button for our settings page
+
+function AddThis_add_disable_button_settings() {
+	register_setting(
+		'AddThis_disable_button',
+		'AddThis_disable_button',
+		'absint'					//This is a sanitation function
+	);
+
+	add_settings_section(
+		'AddThis_main_settings',
+		__( 'AddThis Controls' ),
+		'AddThis_render_main_settings_section',
+		'AddThis_options_page'
+	);
+
+	add_settings_field(
+		'AddThis_disable_button_field',
+		__( 'Disable AddThis Buttons'),
+		'AddThis_render_disable_button_input',
+		'AddThis_options_page',
+		'AddThis_main_settings'
+	);
+}
