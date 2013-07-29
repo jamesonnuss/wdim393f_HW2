@@ -177,7 +177,9 @@ echo '<label><input type="radio" name="Number_Preferred_field" value="1"'.
 
 function AddThis_render_Position_input(){
 	$current = get_option('Position_field', left);
-
-
+		echo '<select>';
+		echo '<option value="left" style="left">Left</option>';
+		echo '<option value="right" style="right">Right</option>';
+		echo '</select>';
 
 }
