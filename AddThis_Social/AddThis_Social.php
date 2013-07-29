@@ -50,3 +50,18 @@ function AddThis_add_button( $content ){
 	return $content;
 }
 
+add_filter('the_content', 'AddThis_add_button', 1);
+
+	//Recieved Help From Chris Allen
+
+function AddThis_add_options_page(){
+	add_options_page(
+		__('AddThis Buttons Options'),
+		__('AddThis Buttons Options'),
+		'manage_options',
+		'AddThis_options_page',
+		'AddThis_render_options_page'
+		);
+}
+
+add_action('admin_menu', 'AddThis_add_options_page');
