@@ -115,3 +115,16 @@ function AddThis_add_disable_button_settings() {
 		'AddThis_main_settings'
 	);
 }
+
+add_action ('admin_init', 'AddThis_add_disable_button_settings');
+
+function AddThis_render_main_settings_section() {
+	echo "<p>Main settings for the AddThis plugin.</p>";
+}
+
+function AddThis_render_disable_button_input() {
+	$current = get_option( 'AddThis_disable_button', 0);
+	echo '<input name="AddThis_disable_button" '. checked( $current, 1, false) .'  type="checkbox" value="1" />';
+}
+
+
