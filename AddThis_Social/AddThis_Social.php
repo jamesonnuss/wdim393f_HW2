@@ -103,12 +103,6 @@ function AddThis_add_disable_button_settings() {
 		'absint'					//This is a sanitation function
 	);
 
-	register_setting(
-		'AddThis_NumberPreferred'
-		'AddThis_NumberPreferred'
-		'absint'
-	);
-
 	add_settings_section(
 		'AddThis_main_settings',
 		__( 'AddThis Controls' ),
@@ -125,9 +119,9 @@ function AddThis_add_disable_button_settings() {
 	);
 
 	add_settings_field(
-		'NumberPreferred_field',
+		'Number_Preferred_field',
     	__('How many Share buttons?'),
-	    'render_Number_Preferred_input',
+	    'AddThis_render_Number_Preferred_input',
 	    'AddThis_options_page',
 	    'AddThis_main_settings'
 
@@ -145,5 +139,31 @@ function AddThis_render_disable_button_input() {
 	$current = get_option( 'AddThis_disable_button', 0);
 	echo '<input name="AddThis_disable_button" '. checked( $current, 1, false) .'  type="checkbox" value="1" />';
 }
+
+
+function AddThis_render_Number_Preferred_input(){
+	 $current = get_option('Number_Preferred_field', 4);
+
+echo '<label><input type="radio" name="Number_Preferred_field" value="1"'.
+ checked(1, $current, false) .'/> 1 </label>';
+
+ echo '<label><input type="radio" name="Number_Preferred_field" value="2"'.
+ checked(2, $current, false) .'/> 2 </label>';
+
+ echo '<label><input type="radio" name="Number_Preferred_field" value="3"'.
+ checked(3, $current, false) .'/> 3 </label>';
+
+ echo '<label><input type="radio" name="Number_Preferred_field" value="4"'.
+ checked(4, $current, false) .'/> 4 </label>';
+
+ echo '<label><input type="radio" name="Number_Preferred_field" value="5"'.
+ checked(5, $current, false) .'/> 5 </label>';
+
+  echo '<label><input type="radio" name="Number_Preferred_field" value="6"'.
+ checked(6, $current, false) .'/> 6 </label>';
+
+}
+
+
 
 
