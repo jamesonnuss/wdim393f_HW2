@@ -9,7 +9,7 @@ Author URI: http://addthis.com
 License: GNU General Public License v2 or later
 */
 
-function AddThis_enqueue_script() {
+function AddThis_enqueue_script($content) {
     // Load the Pinterest script in the footer
     if ( is_single() && 0 == get_option( 'AddThis_disable_button', 0) ) {
 	    wp_enqueue_script(
@@ -25,12 +25,13 @@ function AddThis_enqueue_script() {
 
 add_action( 'wp_enqueue_scripts', 'AddThis_enqueue_script' );
 
-function AddThis_add_button( $content ) {
+function AddThis_add_button() {
     if ( is_single() && 0 == get_option( 'AddThis_disable_button', 0) ) {
         
 
         // Create the AddThis Button HTML
         
+        /*
  		$button_html  = '<div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:0px;top:100px
  		;">';
         $button_html .= '<a class="addthis_button_preferred_1"></a>';
@@ -41,19 +42,45 @@ function AddThis_add_button( $content ) {
         $button_html .='<a class="addthis_button_compact"></a>';
         $button_html .= '</div>';        
 	
-
+	
 
         // Append the button to the content
         $content .= $button_html;
     }
 
     return $content;
+
+*/
+
+    	$button_html .= '<script type="text/javascript">';
+        $button_html .= 'addthis.layers({';
+        $button_html .= '"theme" : "gray",';
+        $button_html .= '"share" : {';
+        $button_html .= '"position" : "right",';
+        $button_html .= '"Number_Preferred" : 3';
+        $button_html .= '},';
+        $button_html .= '"whatsnext" : {},';
+        $button_html .= '"recommended" : {';
+        $button_html .= '"title": "Recommended for you:"';
+        $button_html .= '}';
+        $button_html .= '});';
+        $button_html .= '</script>';   
+    
+   
+    }
+
+      echo $button_html;
+
 }
+
+
+
+
 	//Recieved Help From Chris Allen
 
 	
 
-add_filter( 'the_content', 'AddThis_add_button', 20 );
+add_action( 'wp_footer', 'AddThis_add_button', 20 );
 
 function AddThis_add_options_page() {
 	add_options_page(
@@ -181,5 +208,5 @@ function AddThis_render_Position_input(){
 		echo '<option value="left" style="left">Left</option>';
 		echo '<option value="right" style="right">Right</option>';
 		echo '</select>';
-
 }
+
