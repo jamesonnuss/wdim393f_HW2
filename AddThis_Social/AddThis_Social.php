@@ -130,6 +130,18 @@ function AddThis_add_disable_button_settings() {
 		'absint'					//This is a sanitation function
 	);
 
+	register_setting(
+		'Position_field'
+		'Position_field'
+		'absint'
+	);
+
+	register_setting(
+		'Number_Preferred'
+		'Number_Preferred'
+		'absint'
+	);
+
 	add_settings_section(
 		'AddThis_main_settings',
 		__( 'AddThis Controls' ),
