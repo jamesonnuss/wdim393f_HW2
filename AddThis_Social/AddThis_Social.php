@@ -34,14 +34,14 @@ function AddThis_add_button( $content ){
 	if ( is_single() && 0 == get_option( ' AddThis_disable_button',0) ) {
 		
 		 // Create the AddThis Button HTML
-		$button_html .= '<div class="addthis_toolbox addthis_default_style addthis_32x32_style">'
-		$button_html .= '<a class="addthis_button_preferred_1"></a>'
-		$button_html .= '<a class="addthis_button_preferred_2"></a>'
-		$button_html .= '<a class="addthis_button_preferred_3"></a>'
-		$button_html .= '<a class="addthis_button_preferred_4"></a>'
-		$button_html .= '<a class="addthis_button_compact"></a>'
-		$button_html .= '<a class="addthis_counter addthis_bubble_style"></a>'
-		$button_html .= '</div>'
+		$button_html .= '<div class="addthis_toolbox addthis_default_style addthis_32x32_style">';
+		$button_html .= '<a class="addthis_button_preferred_1"></a>';
+		$button_html .= '<a class="addthis_button_preferred_2"></a>';
+		$button_html .= '<a class="addthis_button_preferred_3"></a>';
+		$button_html .= '<a class="addthis_button_preferred_4"></a>';
+		$button_html .= '<a class="addthis_button_compact"></a>';
+		$button_html .= '<a class="addthis_counter addthis_bubble_style"></a>';
+		$button_html .= '</div>';
 
         // Append the button to the content
         $content .= $button_html;
