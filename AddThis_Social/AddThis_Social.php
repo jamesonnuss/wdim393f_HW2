@@ -9,56 +9,55 @@ Author URI: http://addthis.com
 License: GNU General Public License v2 or later
 */
 
-function AddThis_enqueue_scripts(){
-	if ( is_single() && 0 == get_option( ' AddThis_disable_button',0) ) {
-	wp_enqueue_script(
-		'AddThis',
-		'//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f6a88714752a90',
-		array(),
-		null,
-		true
+function AddThis_enqueue_script() {
+    // Load the Pinterest script in the footer
+    if ( is_single() && 0 == get_option( 'AddThis_disable_button', 0) ) {
+	    wp_enqueue_script(
+	        'AddThis',
+	        '//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51f5903a227e68e0',
+	        array(),
+	        null,
+	        true
 
-		);
-
+	    );
 	}
-
 }
 
-add_action('wp_enqueue_scripts','AddThis_enqueue_scripts');
+add_action( 'wp_enqueue_scripts', 'AddThis_enqueue_script' );
 
+function AddThis_add_button( $content ) {
+    if ( is_single() && 0 == get_option( 'AddThis_disable_button', 0) ) {
+        
 
-function AddThis_add_button( $content ){
-	if ( is_single() && 0 == get_option( ' AddThis_disable_button',0) ) {
-		
-		 // Create the AddThis Button HTML
-		$button_html .= '<div class="addthis_toolbox addthis_floating_style addthis_32x32_style"  style="left:0px;top100px;">';
-		$button_html .= '<a class="addthis_button_preferred_1"></a>';
-		$button_html .= '<a class="addthis_button_preferred_2"></a>';
-		$button_html .= '<a class="addthis_button_preferred_3"></a>';
-		$button_html .= '<a class="addthis_button_preferred_4"></a>';
-		$button_html .= '<a class="addthis_button_compact"></a>';
-		$button_html .= '<a class="addthis_counter addthis_bubble_style"></a>';
-		$button_html .= '</div>';
+        // Create the AddThis Button HTML
+        
+ 		$button_html  = '<div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:0px;top:100px
+ 		;">';
+        $button_html .= '<a class="addthis_button_preferred_1"></a>';
+        $button_html .= '<a class="addthis_button_preferred_2"></a>';
+        $button_html .= '<a class="addthis_button_preferred_3"></a>';
+        $button_html .= '<a class="addthis_button_preferred_4"></a>';
+        $button_html .= '<a class="addthis_button_preferred_5"></a>';
+        $button_html .='<a class="addthis_button_compact"></a>';
+        $button_html .= '</div>';        
+	
+
 
         // Append the button to the content
         $content .= $button_html;
-	}
+    }
 
-	return $content;
+    return $content;
 }
 
-add_filter('the_content', 'AddThis_add_button', 20);
+add_filter( 'the_content', 'AddThis_add_button', 20 );
 
-	//Recieved Help From Chris Allen
-
-function AddThis_add_options_page(){
+function AddThis_add_options_page() {
 	add_options_page(
-		__('AddThis Buttons Options'),
-		__('AddThis Buttons Options'),
+		__('AddThis'),
+		__('AddThis'),
 		'manage_options',
 		'AddThis_options_page',
 		'AddThis_render_options_page'
-		);
+	);
 }
-
-add_action('admin_menu', 'AddThis_add_options_page');
