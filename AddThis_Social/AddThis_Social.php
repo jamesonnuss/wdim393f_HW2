@@ -59,7 +59,7 @@ function AddThis_add_button() {
         $button_html .= '"theme" : "gray",';
         $button_html .= '"share" : {';
         $button_html .= '"position" : "right",';
-        $button_html .= '"Number_Preferred" : 3';
+        $button_html .= '"numPreferredServices" : 3';
         $button_html .= '},';
         $button_html .= '"whatsnext" : {},';
         $button_html .= '"recommended" : {';
@@ -74,9 +74,6 @@ function AddThis_add_button() {
       echo $button_html;
 
 }
-
-
-
 
 	//Recieved Help From Chris Allen
 
