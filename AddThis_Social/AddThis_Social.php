@@ -52,6 +52,8 @@ function AddThis_add_button() {
 
 */
 
+    	//I recieved help from Kay Enojado here
+
     	$button_html .= '<script type="text/javascript">';
         $button_html .= 'addthis.layers({';
         $button_html .= '"theme" : "gray",';
@@ -130,9 +132,11 @@ function AddThis_add_disable_button_settings() {
 		'absint'					//This is a sanitation function
 	);
 
+/*
+
 	register_setting(
-		'Position_field'
-		'Position_field'
+		'Position'
+		'Position'
 		'absint'
 	);
 
@@ -141,6 +145,8 @@ function AddThis_add_disable_button_settings() {
 		'Number_Preferred'
 		'absint'
 	);
+
+*/
 
 	add_settings_section(
 		'AddThis_main_settings',
