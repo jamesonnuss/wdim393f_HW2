@@ -54,12 +54,15 @@ function AddThis_add_button() {
 
     	//I recieved help from Kay Enojado here
 
+    	$z = get_option('Number_Preferred_field', 3);
+    	$x = get_option('Position_field', 'left');
+    	
     	$button_html .= '<script type="text/javascript">';
         $button_html .= 'addthis.layers({';
         $button_html .= '"theme" : "gray",';
         $button_html .= '"share" : {';
-        $button_html .= '"position" : "right",';
-        $button_html .= '"numPreferredServices" : 3';
+        $button_html .= '"position" : "'. $x .'",';
+        $button_html .= '"numPreferredServices" :'. $z;
         $button_html .= '},';
         $button_html .= '"whatsnext" : {},';
         $button_html .= '"recommended" : {';
@@ -106,7 +109,7 @@ function AddThis_render_options_page() {
         <form action="options.php" method="post">
 
 
-            <?php settings_fields( 'AddThis_disable_button' ); ?>
+            <?php settings_fields( 'AddThis_Option_Group' ); ?>
             <?php do_settings_sections( 'AddThis_options_page' ); ?>
             
 
@@ -124,26 +127,25 @@ function AddThis_render_options_page() {
 
 function AddThis_add_disable_button_settings() {
 	register_setting(
-		'AddThis_disable_button',
-		'AddThis_disable_button',
+		'AddThis_Option_Group',	//This is the group
+		'AddThis_disable_button',	//This is the field
 		'absint'					//This is a sanitation function
 	);
 
-/*
+
 
 	register_setting(
-		'Position'
-		'Position'
-		'absint'
+		'AddThis_Option_Group',
+		'Position_field'
+		
 	);
 
 	register_setting(
-		'Number_Preferred'
-		'Number_Preferred'
+		'AddThis_Option_Group',
+		'Number_Preferred_field',
 		'absint'
 	);
 
-*/
 
 	add_settings_section(
 		'AddThis_main_settings',
@@ -191,9 +193,8 @@ function AddThis_render_disable_button_input() {
 	echo '<input name="AddThis_disable_button" '. checked( $current, 1, false) .'  type="checkbox" value="1" />';
 }
 
-
 function AddThis_render_Number_Preferred_input(){
-	 $current = get_option('Number_Preferred_field', 4);
+	 $current = get_option('Number_Preferred_field', 3);
 
 echo '<label><input type="radio" name="Number_Preferred_field" value="1"'.
  checked(1, $current, false) .'/> 1 </label>';
@@ -216,12 +217,14 @@ echo '<label><input type="radio" name="Number_Preferred_field" value="1"'.
 }
 
 
+//Recieved Help from Jace
 
 function AddThis_render_Position_input(){
-	$current = get_option('Position_field', left);
+	$current = get_option('Position_field', 'left');
 		echo '<select>';
-		echo '<option value="left" style="left">Left</option>';
-		echo '<option value="right" style="right">Right</option>';
+		echo '<option value="left" style="left" '.
+ selected('left', $current, false) .'> Left </option>';
+		echo '<option value="right" style="right" '.
+ selected('right', $current, false) .'> Right</option>';
 		echo '</select>';
 }
-
